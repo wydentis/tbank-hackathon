@@ -9,4 +9,7 @@ urlpatterns = [
     path('token/refresh/',
          jwt_views.TokenRefreshView.as_view(),
          name='token_refresh'),
+     path('signup/', views.signup, name='signup'),
+     # path('fridge/weight', views.get_fridge_product_weight, name='fridge_product_weight'),
+     path('fridge/weight', views.get_all_fridge_weights, name='all_fridge_weights')
 ]
