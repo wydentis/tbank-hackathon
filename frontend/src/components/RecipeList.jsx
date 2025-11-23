@@ -39,8 +39,8 @@ function RecipeList() {
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-        <h2 className="page-title">Каталог рецептов</h2>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
+        <h2 className="page-title" style={{ marginBottom: 0 }}>Каталог рецептов</h2>
         <button className="btn btn-primary" onClick={() => navigate('/recipe/new')}>
           + Добавить рецепт
         </button>

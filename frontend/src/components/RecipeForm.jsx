@@ -126,11 +126,11 @@ function RecipeForm() {
         <div className="form-group">
           <label>Ингредиенты</label>
           {formData.ingredients_data.map((item, index) => (
-            <div key={index} style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
+            <div key={index} style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
               <select
                 value={item.ingredient_id}
                 onChange={(e) => updateIngredient(index, 'ingredient_id', e.target.value)}
-                style={{ flex: 2 }}
+                style={{ flex: '2 1 200px', minWidth: '200px' }}
                 required
               >
                 <option value="">Выберите ингредиент</option>
@@ -146,13 +146,14 @@ function RecipeForm() {
                 value={item.amount}
                 onChange={(e) => updateIngredient(index, 'amount', e.target.value)}
                 placeholder="Количество"
-                style={{ flex: 1 }}
+                style={{ flex: '1 1 100px', minWidth: '100px' }}
                 required
               />
               <button 
                 type="button" 
                 className="btn btn-danger"
                 onClick={() => removeIngredient(index)}
+                style={{ flex: '0 1 auto' }}
               >
                 Удалить
               </button>

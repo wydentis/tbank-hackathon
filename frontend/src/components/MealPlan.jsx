@@ -144,12 +144,13 @@ function MealPlan() {
                 <div key={mealType} className="meal-slot">
                   <div className="meal-type">{getMealTypeLabel(mealType)}</div>
                   {groupedMeals[date][mealType].map((meal) => (
-                    <div key={meal.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <div>
+                    <div key={meal.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                      <div style={{ flex: '1 1 auto', minWidth: '150px' }}>
                         <strong>{meal.recipe.name}</strong> ({meal.portions} порц.)
                       </div>
                       <button 
                         className="btn btn-danger"
+                        style={{ flex: '0 0 auto' }}
                         onClick={() => handleDelete(meal.id)}
                       >
                         Удалить

@@ -49,8 +49,8 @@ function Inventory() {
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-        <h2 className="page-title">Учёт запасов</h2>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
+        <h2 className="page-title" style={{ marginBottom: 0 }}>Учёт запасов</h2>
         <button className="btn btn-primary" onClick={() => setShowModal(true)}>
           + Обновить запасы
         </button>

@@ -10,6 +10,8 @@
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .navbar h1 {
@@ -20,6 +22,7 @@
   display: flex;
   gap: 1.5rem;
   list-style: none;
+  flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -28,6 +31,7 @@
   padding: 0.5rem 1rem;
   border-radius: 4px;
   transition: background-color 0.3s;
+  white-space: nowrap;
 }
 
 .nav-links a:hover,
@@ -333,4 +337,203 @@
   display: flex;
   gap: 0.5rem;
   margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar h1 {
+    font-size: 1.25rem;
+    width: 100%;
+  }
+
+  .nav-links {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .container {
+    padding: 0 1rem;
+    margin: 1rem auto;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .recipe-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .inventory-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .btn {
+    padding: 0.625rem 1rem;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .actions .btn {
+    width: 100%;
+  }
+
+  .modal {
+    width: 95%;
+    padding: 1.5rem;
+    max-height: 85vh;
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    font-size: 16px;
+  }
+
+  .recipe-image {
+    height: 180px;
+  }
+
+  .meal-slot {
+    padding: 0.75rem;
+  }
+
+  .day-plan {
+    padding: 1rem;
+  }
+
+  .shopping-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.75rem;
+  }
+
+  .navbar h1 {
+    font-size: 1.1rem;
+  }
+
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  .page-title {
+    font-size: 1.25rem;
+  }
+
+  .card {
+    padding: 0.75rem;
+  }
+
+  .btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .modal {
+    width: 98%;
+    padding: 1rem;
+  }
+
+  .recipe-content {
+    padding: 1rem;
+  }
+
+  .recipe-title {
+    font-size: 1.1rem;
+  }
+
+  .inventory-item {
+    padding: 1rem;
+  }
+
+  .inventory-name {
+    font-size: 1rem;
+  }
+
+  .inventory-quantity {
+    font-size: 1.1rem;
+  }
+
+  .ingredient-list {
+    font-size: 0.9rem;
+  }
+
+  .ingredient-item {
+    padding: 0.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .day-header {
+    font-size: 1.1rem;
+  }
+
+  .meal-type {
+    font-size: 0.95rem;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  .btn {
+    min-height: 44px;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .nav-links a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .recipe-card {
+    cursor: default;
+  }
+
+  .close-btn {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.5rem;
+  }
 }
