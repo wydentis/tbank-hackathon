@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: tbank-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/db.sqlite3:/app/db.sqlite3
+      - ./backend/media:/app/media
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - tbank-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: tbank-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - tbank-network
+    restart: unless-stopped
+
+networks:
+  tbank-network:
+    driver: bridge
