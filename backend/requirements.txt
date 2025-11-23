@@ -1,6 +1,4 @@
-Django
-djangorestframework
-djangorestframework_simplejwt
-django-cors-headers
-psycopg2-binary
-pillow
+Django==4.2.7
+djangorestframework==3.14.0
+django-cors-headers==4.3.0
+python-dotenv==1.0.0
