@@ -1,26 +1,42 @@
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.db.models import Sum, F
+from django.contrib.auth.models import User
 from datetime import datetime, timedelta
 from .models import Recipe, Ingredient, Inventory, MealPlan, ShoppingList
 from .serializers import (
     RecipeSerializer, IngredientSerializer, InventorySerializer,
-    MealPlanSerializer, ShoppingListSerializer
+    MealPlanSerializer, ShoppingListSerializer, UserSerializer
 )
+from django.contrib.auth.forms import UserCreationForm
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def register(request):
+    serializer = UserSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class RecipeViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
 
 
 class IngredientViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
 
 
 class InventoryViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Inventory.objects.all()
     serializer_class = InventorySerializer
 
@@ -46,6 +62,7 @@ class InventoryViewSet(viewsets.ModelViewSet):
 
 
 class MealPlanViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = MealPlan.objects.all()
     serializer_class = MealPlanSerializer
 
@@ -63,9 +80,10 @@ class MealPlanViewSet(viewsets.ModelViewSet):
 
 
 class ShoppingListViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = ShoppingList.objects.all()
     serializer_class = ShoppingListSerializer
-
+    
     @action(detail=False, methods=['post'])
     def generate_from_meal_plan(self, request):
         """Генерация списка покупок на основе плана питания"""

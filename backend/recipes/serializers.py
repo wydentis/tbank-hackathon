@@ -1,6 +1,20 @@
 from rest_framework import serializers
 from .models import Recipe, Ingredient, RecipeIngredient, Inventory, MealPlan, ShoppingList
+from django.contrib.auth.models import User
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password', 'first_name', 'last_name']
+        extra_kwargs = {'password': {'write_only': True}}
+    
+    def create(self, validated_data):
+        # Use create_user to properly hash the password
+        user = User.objects.create_user(
+            username=validated_data['username'],
+            password=validated_data['password'],
+        )
+        return user
 
 class IngredientSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,9 +1,10 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Recipe(models.Model):
     name = models.CharField(max_length=200, verbose_name="Название рецепта")
     description = models.TextField(blank=True, verbose_name="Описание")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     cooking_steps = models.TextField(verbose_name="Шаги приготовления")
     image = models.URLField(blank=True, null=True, verbose_name="Изображение")
     created_at = models.DateTimeField(auto_now_add=True)
@@ -46,6 +47,7 @@ class RecipeIngredient(models.Model):
 
 
 class Inventory(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     ingredient = models.OneToOneField(Ingredient, on_delete=models.CASCADE, related_name='inventory')
     quantity = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name="Количество в наличии")
     updated_at = models.DateTimeField(auto_now=True)
@@ -59,6 +61,7 @@ class Inventory(models.Model):
 
 
 class MealPlan(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     MEAL_TYPES = [
         ('breakfast', 'Завтрак'),
         ('lunch', 'Обед'),
@@ -82,6 +85,7 @@ class MealPlan(models.Model):
 
 
 class ShoppingList(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
     quantity = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Требуемое количество")
     purchased = models.BooleanField(default=False, verbose_name="Куплено")

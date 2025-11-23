@@ -23,6 +23,7 @@
   gap: 1.5rem;
   list-style: none;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .nav-links a {
@@ -37,6 +38,22 @@
 .nav-links a:hover,
 .nav-links a.active {
   background-color: #34495e;
+}
+
+.logout-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.logout-btn:hover {
+  background-color: #c0392b;
 }
 
 .container {
